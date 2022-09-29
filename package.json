@@ -1,0 +1,24 @@
+{
+  "name": "@cinemataztic/mongoose-alphanumeric",
+  "version": "1.0.0",
+  "description": "Mongoose plugin for generating alphanumeric characters",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cinemataztic/mongoose-alphanumeric.git"
+  },
+  "keywords": [
+    "mongoose",
+    "alphanumeric",
+    "plugin"
+  ],
+  "author": "Cinemataztic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cinemataztic/mongoose-alphanumeric/issues"
+  },
+  "homepage": "https://github.com/cinemataztic/mongoose-alphanumeric#readme"
+}
