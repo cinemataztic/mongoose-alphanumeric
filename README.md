@@ -30,8 +30,8 @@ const Model = mongoose.model('Model',  schema);
 Add options as per your requirements for alphanumeric code generation
 
 - `[options]` {Object}
-  - `[field]` {String} - Name of field for storing alphanumeric. Default value is **alphanumeric**
-  - `[unique]` {Boolean} - If unique is set to false then the same alphanumeric code can be saved in other documents. Default value is **true**
+  - `[field]` {String} - Name of field for storing alphanumeric, field name must match the field name set on the model schema. Default value is **alphanumeric**
+  - `[unique]` {Boolean} - If unique is set to false then the same alphanumeric code can be used in other documents within the same collection. Default value is **true**
   - `[length]` {Number} - Determines the length of the alphanumeric code to be generated. Default value is **4**
   - `[chars]` {String} - Set of characters from where alphanumeric code can be generated. Default value is **0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ**
 
@@ -39,7 +39,7 @@ Add options as per your requirements for alphanumeric code generation
 
 ```
 schema.plugin(mongooseAlphanumeric, {
-  field: 'alphanumeric-code',
+  field: 'alphanumeric',
   unique: true,
   length: 5,
   chars: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
