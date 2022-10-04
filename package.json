@@ -1,6 +1,6 @@
 {
   "name": "@cinemataztic/mongoose-alphanumeric",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Mongoose plugin for generating alphanumeric code",
   "main": "index.js",
   "scripts": {
