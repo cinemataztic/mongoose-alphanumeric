@@ -17,37 +17,39 @@ const alphanumericPlugin = function (schema, options) {
     ? optionsCpy.chars
     : "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-  schema.pre("save", unique, function (next, done) {
-    const uniqueCode = generateAlphaNumericCode(length, chars);
+  schema.pre("save", function (next) {
+    if (this.isNew) {
+      const uniqueCode = generateAlphaNumericCode(length, chars);
 
-    if (!unique) {
-      this[alphanumeric] = uniqueCode;
+      if (!unique) {
+        this[alphanumeric] = uniqueCode;
+        next();
+      }
+
+      let self = this;
+      let query = {};
+
+      function findNewCode(code) {
+        query[alphanumeric] = code;
+        query["_id"] = { $ne: self._id };
+        self.constructor.findOne(query, function (err, data) {
+          if (err) {
+            throw err;
+          }
+          if (!data) {
+            self[alphanumeric] = code;
+            next();
+          } else {
+            const newUniqueCode = generateAlphaNumericCode(length, chars);
+            findNewCode(newUniqueCode);
+          }
+        });
+      }
+
+      findNewCode(uniqueCode);
+    } else {
       next();
-      done();
     }
-
-    let self = this;
-    let query = {};
-
-    function findNewCode(code) {
-      query[alphanumeric] = code;
-      query["_id"] = { $ne: self._id };
-      self.constructor.findOne(query, function (err, data) {
-        if (err) {
-          throw err;
-        }
-        if (!data) {
-          self[alphanumeric] = code;
-          next();
-          done();
-        } else {
-          const newUniqueCode = generateAlphaNumericCode(length, chars);
-          findNewCode(newUniqueCode);
-        }
-      });
-    }
-
-    findNewCode(uniqueCode);
   });
 };
 
