@@ -3,12 +3,11 @@ function generateAlphaNumericCode(length, chars) {
   for (let i = length; i > 0; i--) {
     alphanumericCode += chars[Math.floor(Math.random() * chars.length)];
   }
-
   return alphanumericCode;
 }
 
 /*
- * @param {Object} self Model docuement reference
+ * @param {Object} self Model document reference
  * @param {String} code Alphanumeric code
  * @param {String} alphaNumId Field path set in model and passed in options
  * @param {Number} length Length for generating alphanumeric code
